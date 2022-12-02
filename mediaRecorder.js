@@ -1,7 +1,9 @@
 let record = document.getElementById("record");
 let stopRecording = document.getElementById("stop");
 let play = document.getElementById("play");
+let apprenant = document.getElementById("apprenant-text-area");
 let audioChunks = [];
+let textWarningRecording = document.createTextNode("Enregistrement en cours");
 
 navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
   record.classList.add("blowing-button");
@@ -10,12 +12,14 @@ navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
     audioChunks.push(event.data);
   });
   record.addEventListener("click", () => {
+    apprenant.appendChild(textWarningRecording);
     record.classList.remove("blowing-button");
     stopRecording.classList.add("blowing-button");
     audioChunks = [];
     mediaRecorder.start();
   });
   stopRecording.addEventListener("click", () => {
+    apprenant.removeChild(textWarningRecording);
     stopRecording.classList.remove("blowing-button");
     mediaRecorder.stop();
     play.classList.add("blowing-button");
