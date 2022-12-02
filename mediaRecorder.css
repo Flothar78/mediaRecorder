@@ -1,13 +1,54 @@
-.container {
+.flex-space-around-container {
+  border: 3px yellow solid;
   display: flex;
   justify-content: space-around;
 }
 .title {
-  border: 3px red solid;
   text-align: center;
 }
 .button {
-  height: 90px;
+  height: 60px;
   width: 90px;
   padding: 0;
+}
+.apprenant {
+  border: 3px solid blue;
+}
+.professeur {
+  border: 3px solid green;
+}
+.text-icons-area {
+  border: 3px rgb(245, 5, 177) solid;
+  font-size: 25px;
+}
+.blowing-button {
+  background-color: #1c87c9;
+  -webkit-border-radius: 60px;
+  border-radius: 60px;
+  border: none;
+  color: #eeeeee;
+  cursor: pointer;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 20px;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+}
+@keyframes glowing {
+  0% {
+    background-color: #2ba805;
+    box-shadow: 0 0 3px #2ba805;
+  }
+  50% {
+    background-color: #49e819;
+    box-shadow: 0 0 10px #49e819;
+  }
+  100% {
+    background-color: #2ba805;
+    box-shadow: 0 0 3px #2ba805;
+  }
+}
+.blowing-button {
+  animation: glowing 1300ms infinite;
 }

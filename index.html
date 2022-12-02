@@ -1,25 +1,34 @@
 <!DOCTYPE html>
-html>
+<html>
   <head>
     <title>Record Audio Test</title>
     <link href="mediaRecorder.css" rel="stylesheet" />
   </head>
   <body>
     <h1 class="title">recorder Appli MVP</h1>
-    <div class="container">
-      <div>
+    <div class="flex-space-around-container">
+      <div class="apprenant">
         <h3>Apprenant</h3>
-        <button class="button" id="record">Start recording</button>
-        <button class="button" id="stop">Stop recording</button>
-        <button class="button" id="play">Play recorded sound</button>
+        <div class="text-icons-area">
+          "Enregistrement en cours"
+          <br />
+          <small> Penser à cliquer sur stop avant play </small>
+        </div>
+        <div class="flex-space-around-container">
+          <button class="button" id="record">Start recording</button>
+          <button class="button" id="stop">Stop recording</button>
+          <button class="button" id="play">Play recorded sound</button>
+        </div>
       </div>
-      <div>
+      <div class="professeur">
         <h3>Professeur</h3>
-        <button class="button" id="playProf">Play</button>
-        <button class="button" id="stopProf">Stop</button>
+        <div class="text-icons-area">"Base de données de sons par profs"</div>
+        <div class="flex-space-around-container">
+          <button class="button" id="playProf">Play</button>
+          <button class="button" id="stopProf">Stop</button>
+        </div>
       </div>
     </div>
-
     <script src="./mediaRecorder.js"></script>
   </body>
 </html>
