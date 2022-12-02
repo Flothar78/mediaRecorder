@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+.title {
+  border: 3px red solid;
+  text-align: center;
+}
+.button {
+  height: 90px;
+  width: 90px;
+  padding: 0;
+}
