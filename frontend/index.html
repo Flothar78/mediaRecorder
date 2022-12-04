@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Record Audio Test</title>
+    <link href="mediaRecorder.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="title">recorder Appli MVP</h1>
+    <div class="flex-space-around-container">
+      <div class="apprenant">
+        <h3>Apprenant</h3>
+        <div id="apprenant-text-area" class="text-icons-area"></div>
+        <div class="flex-space-around-container">
+          <button class="button" id="recordA">Start recording</button>
+          <button class="button" id="stopRecA">Stop recording</button>
+          <button class="button" id="playA">Play recorded sound</button>
+        </div>
+      </div>
+      <div class="professeur">
+        <h3>Professeur</h3>
+        <div class="text-icons-area">Base de données de sons par profs</div>
+        <div class="flex-space-around-container">
+          <button class="button" id="recordP">Start recording</button>
+          <button class="button" id="stopRecP">Stop recording</button>
+          <button class="button" id="playP">Play</button>
+        </div>
+      </div>
+    </div>
+    <script src="./mediaRecorderApprenant.js"></script>
+    <script type="module" src="./mediaRecorderProfesseur.js"></script>
+  </body>
+</html>

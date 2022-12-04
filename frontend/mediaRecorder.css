@@ -1,4 +1,3 @@
-
 .flex-space-around-container {
   border: 3px yellow solid;
   display: flex;
@@ -22,7 +21,7 @@
   border: 3px rgb(245, 5, 177) solid;
   font-size: 25px;
 }
-.blowing-button {
+.glowing-button {
   background-color: #1c87c9;
   -webkit-border-radius: 60px;
   border-radius: 60px;
@@ -50,6 +49,6 @@
     box-shadow: 0 0 3px #2ba805;
   }
 }
-.blowing-button {
+.glowing-button {
   animation: glowing 1300ms infinite;
 }
