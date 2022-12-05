@@ -3,10 +3,12 @@ dotenv.config({ path: "../.env" });
 const express = require("express");
 //const multer = require("multer");
 const app = express();
+const cors = require("cors");
 const mongoose = require("mongoose");
 const port = 3078;
 const routes = require("./routes/routes");
 
+app.use(cors());
 app.use(express.json());
 app.use("/api", routes);
 

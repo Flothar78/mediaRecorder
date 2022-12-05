@@ -6,7 +6,7 @@ const dataSchema = new mongoose.Schema({
     type: String,
   },
   age: {
-    required: true,
+    required: false,
     type: Number,
   },
 });

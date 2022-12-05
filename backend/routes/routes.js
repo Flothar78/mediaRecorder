@@ -4,7 +4,7 @@ const Model = require("../models/model");
 module.exports = router;
 
 router.get("/", (req, res) => {
-  res.send("Page de confirmation backend OK");
+  res.send("Test route get/");
 });
 
 router.get("/getOne/:id", (req, res) => {
@@ -14,7 +14,7 @@ router.get("/getOne/:id", (req, res) => {
 router.post("/post", async (req, res) => {
   const data = new Model({
     name: req.body.name,
-    age: req.body.age
+    age: req.body.age,
   });
 
   try {
