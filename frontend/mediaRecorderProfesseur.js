@@ -13,24 +13,28 @@ navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
     mediaRecorder.start();
   });
   stopRecP.addEventListener("click", () => {
-    console.log(audioChunksProf);
     mediaRecorder.stop();
   });
 });
 
 playP.addEventListener("click", () => {
-  // const newBlob = new Blob(audioChunksProf);
-  // console.log(newBlob);
-  // const fd = new FormData();
-  // fd.append("upl", newBlob);
-  // console.log(fd);
-  // console.log(audioUrl);
-  const stringTestObj = { name: "ceJourlà", age: 71 };
+  const newBlob = new Blob(audioChunksProf, {
+    type: "application/octet-binary",
+  });
+  let url = URL.createObjectURL(newBlob);
+  console.log(url);
+  const fd = new FormData();
+  fd.append("teacherSound", newBlob);
+  //console.log(typeof fd);
+  for (const [key, value] of fd) {
+    console.log(key, value);
+  }
+  //console.log(fd.get("teacherSound"));
+
+  //const stringTestObj = { name: "arrobazLife", age: 159 };
   fetch("http://127.0.0.1:3078/api/post", {
-    // HTTP request type
     method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify(stringTestObj),
+    body: fd,
   })
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
