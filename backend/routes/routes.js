@@ -11,9 +11,9 @@ router.get("/getOne/:id", (req, res) => {
   res.send(req.params.id);
 });
 
-router.post("/post", (req, res) => {
-  console.log(req.body.value);
-  console.log(req.file);
+router.post("/post", async (req, res) => {
+  res.send(req.body.value);
+  res.send(req.file);
 });
 
 // router.post("/post", async (req, res) => {

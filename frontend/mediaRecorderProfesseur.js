@@ -34,7 +34,7 @@ playP.addEventListener("click", () => {
   //const stringTestObj = { name: "arrobazLife", age: 159 };
   fetch("http://127.0.0.1:3078/api/post", {
     method: "POST",
-    body: fd,
+    body: JSON.stringify(fd.body),
   })
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
