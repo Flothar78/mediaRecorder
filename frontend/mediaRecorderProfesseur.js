@@ -21,20 +21,19 @@ playP.addEventListener("click", () => {
   const newBlob = new Blob(audioChunksProf, {
     type: "application/octet-binary",
   });
-  let url = URL.createObjectURL(newBlob);
-  console.log(url);
+  console.log(newBlob.type);
+  //let url = URL.createObjectURL(newBlob);
+  //console.log(url);
   const fd = new FormData();
-  fd.append("teacherSound", newBlob);
-  //console.log(typeof fd);
+  fd.append("sound", newBlob);
   for (const [key, value] of fd) {
     console.log(key, value);
   }
-  //console.log(fd.get("teacherSound"));
 
   //const stringTestObj = { name: "arrobazLife", age: 159 };
   fetch("http://127.0.0.1:3078/api/post", {
     method: "POST",
-    body: JSON.stringify(fd.body),
+    body: fd,
   })
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
