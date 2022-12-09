@@ -17,7 +17,7 @@ navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
   });
 });
 
-playP.addEventListener("click", () => {
+sendP.addEventListener("click", () => {
   const newBlob = new Blob(audioChunksProf, {
     type: "application/octet-binary",
   });
@@ -29,12 +29,21 @@ playP.addEventListener("click", () => {
   for (const [key, value] of fd) {
     console.log(key, value);
   }
-
-  //const stringTestObj = { name: "arrobazLife", age: 159 };
   fetch("http://127.0.0.1:3078/api/post", {
     method: "POST",
     body: fd,
   })
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
+});
+
+const displayBlob = document.getElementById("databaseDisplay");
+showP.addEventListener("click", async () => {
+  fetch("http://127.0.0.1:3078/api/")
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      displayBlob.append(data.map((x) => `${x.sound}`));
+    });
 });

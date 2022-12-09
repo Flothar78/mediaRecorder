@@ -5,11 +5,12 @@ const multer = require("multer");
 const upload = multer({ dest: "sounds" });
 const fs = require("fs");
 const path = require("path");
-router.get("/", (req, res) => {
-  res.send("Test route get/");
+
+router.get("/", async (req, res) => {
+  Model.find()
+    .then((sounds) => res.status(200).json(sounds))
+    .catch((err) => res.status(400).json({ err }));
 });
-
-
 
 router.post("/post", upload.single("sound"), async (req, res) => {
   const data = new Model({

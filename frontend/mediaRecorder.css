@@ -1,7 +1,8 @@
 .flex-space-around-container {
   border: 3px yellow solid;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .title {
   text-align: center;
@@ -13,9 +14,14 @@
 }
 .apprenant {
   border: 3px solid blue;
+  margin-bottom: 15px;
 }
 .professeur {
   border: 3px solid green;
+}
+#databaseDisplay {
+  border: rgb(115, 99, 99) 4px solid;
+
 }
 .text-icons-area {
   border: 3px rgb(245, 5, 177) solid;
