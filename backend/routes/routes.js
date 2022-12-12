@@ -15,18 +15,20 @@ router.get("/", async (req, res) => {
 router.post("/post", upload.single("sound"), async (req, res) => {
   const data = new Model({
     name: req.file.fieldname,
-    sound: fs.readFileSync(
-      path.join(__dirname + "/../sounds/" + req.file.filename)
+    sound: Buffer.from(
+      path.resolve(__dirname + "/../sounds/" + req.file.filename)
     ),
+    size: req.file.size,
   });
   console.log(data);
+  console.log(req.file);
   try {
     const dataToSave = await data.save();
     res.status(200).json(dataToSave);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-  console.log(req.file);
+  // console.log(req.file);
 });
 
 // router.get("/getOne/:id", (req, res) => {

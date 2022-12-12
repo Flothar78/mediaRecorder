@@ -26,9 +26,10 @@ sendP.addEventListener("click", () => {
   //console.log(url);
   const fd = new FormData();
   fd.append("sound", newBlob);
-  for (const [key, value] of fd) {
-    console.log(key, value);
-  }
+  console.log(fd);
+  // for (const [key, value] of fd) {
+  //  console.log(key, value);
+  //
   fetch("http://127.0.0.1:3078/api/post", {
     method: "POST",
     body: fd,
@@ -38,12 +39,13 @@ sendP.addEventListener("click", () => {
 });
 
 const displayBlob = document.getElementById("databaseDisplay");
-showP.addEventListener("click", async () => {
+showP.addEventListener("click", () => {
   fetch("http://127.0.0.1:3078/api/")
     .then((res) => {
       return res.json();
     })
     .then((data) => {
-      displayBlob.append(data.map((x) => `${x.sound}`));
+      displayBlob.append(data.map((x) => `size: ${x.size} ; id:${x._id} `));
+      console.log(data[0]);
     });
 });
