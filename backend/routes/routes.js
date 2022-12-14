@@ -12,10 +12,10 @@ router.get("/", async (req, res) => {
     .catch((err) => res.status(400).json({ err }));
 });
 
-router.post("/post", upload.single("sound"), async (req, res) => {
+router.post("/post", upload.single("teacherVoice"), async (req, res) => {
   const data = new Model({
-    name: req.file.fieldname,
-    sound: Buffer.from(
+    name: req.file.filename,
+    path: Buffer.from(
       path.resolve(__dirname + "/../sounds/" + req.file.filename)
     ),
     size: req.file.size,

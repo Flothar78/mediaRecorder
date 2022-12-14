@@ -18,18 +18,10 @@ navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
 });
 
 sendP.addEventListener("click", () => {
-  const newBlob = new Blob(audioChunksProf, {
-    type: "application/octet-binary",
-  });
-  console.log(newBlob.type);
-  //let url = URL.createObjectURL(newBlob);
-  //console.log(url);
+  const newBlob = new Blob(audioChunksProf);
   const fd = new FormData();
-  fd.append("sound", newBlob);
+  fd.append("teacherVoice", newBlob);
   console.log(fd);
-  // for (const [key, value] of fd) {
-  //  console.log(key, value);
-  //
   fetch("http://127.0.0.1:3078/api/post", {
     method: "POST",
     body: fd,
@@ -40,12 +32,20 @@ sendP.addEventListener("click", () => {
 
 const displayBlob = document.getElementById("databaseDisplay");
 showP.addEventListener("click", () => {
-  fetch("http://127.0.0.1:3078/api/")
+  fetch("http://127.0.0.1:3078/api/", {
+    method: "GET",
+  })
     .then((res) => {
       return res.json();
     })
     .then((data) => {
-      displayBlob.append(data.map((x) => `size: ${x.size} ; id:${x._id} `));
-      console.log(data[0]);
-    });
+      displayBlob.append(data[0].name);
+      console.log(data[0].path);
+      let audio = new Audio(`../backend/sounds/${data[0].name}`);
+      audio
+        .play()
+        .then(console.log(audio))
+        .catch((err) => console.log(err));
+    })
+    .catch((err) => console.log(err));
 });
