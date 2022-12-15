@@ -42,24 +42,23 @@ addEventListener("load", () => {
         (x) => x.soundHexaRef.split``.slice(0, 8).join``
       );
       console.log(soundReducedHexaName);
+
       soundReducedHexaName.map((p, i) => {
         let button = document.createElement("button");
-        button.setAttribute("id", `teacher-sound${i}`);
+        button.setAttribute("id", `${i}`);
         displaySound.insertAdjacentElement("afterbegin", button).append(p);
       });
 
       function selectAndPlaySound(i) {
-        document
-          .getElementById(`teacher-sound${i}`)
-          .addEventListener("click", () => {
-            let audio = new Audio(`../backend/sounds/${data[i].soundHexaRef}`);
-            audio
-              .play()
-              .then(console.log(audio))
-              .catch((err) => console.log(err));
-          });
+        let audio = new Audio(`../backend/sounds/${data[i].soundHexaRef}`);
+        audio
+          .play()
+          .then()
+          .catch((err) => console.log(err));
       }
-      selectAndPlaySound(2);
+      document.addEventListener("click", (e) => {
+        return selectAndPlaySound(e.target.id);
+      });
     })
     .catch((err) => console.log(err));
 });
