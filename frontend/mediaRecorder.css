@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
 .title {
   text-align: center;
 }
@@ -10,6 +11,8 @@
   height: 60px;
   width: 90px;
   padding: 0;
+  margin-top: 3vw;
+  margin-bottom: 3vw;
 }
 .apprenant {
   border: 3px solid black;
@@ -17,6 +20,11 @@
 }
 .professeur {
   border: 3px solid black;
+}
+.teacher-sound-button {
+  width: 90px;
+  margin-left: .8vw;
+  margin-top: .8vw;
 }
 
 .text-icons-area {

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const soundSchema = new mongoose.Schema({
-  name: String,
+  soundHexaRef: String,
   path: {
     type: String,
     require: true,

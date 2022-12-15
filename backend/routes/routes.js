@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 
 router.post("/post", upload.single("teacherVoice"), async (req, res) => {
   const data = new Model({
-    name: req.file.filename,
+    soundHexaRef: req.file.filename,
     path: Buffer.from(
       path.resolve(__dirname + "/../sounds/" + req.file.filename)
     ),

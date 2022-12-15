@@ -1,6 +1,7 @@
-let recordP = document.getElementById("recordP");
-let stopRecP = document.getElementById("stopRecP");
-let playP = document.getElementById("playP");
+const recordP = document.getElementById("recordP");
+const stopRecP = document.getElementById("stopRecP");
+const displaySound = document.getElementById("databaseDisplay");
+const playP = document.getElementById("playP");
 let audioChunksProf = [];
 
 navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
@@ -21,7 +22,6 @@ sendP.addEventListener("click", () => {
   const newBlob = new Blob(audioChunksProf);
   const fd = new FormData();
   fd.append("teacherVoice", newBlob);
-  console.log(fd);
   fetch("http://127.0.0.1:3078/api/post", {
     method: "POST",
     body: fd,
@@ -30,8 +30,7 @@ sendP.addEventListener("click", () => {
     .catch((err) => console.log(err));
 });
 
-const displayBlob = document.getElementById("databaseDisplay");
-showP.addEventListener("click", () => {
+addEventListener("load", () => {
   fetch("http://127.0.0.1:3078/api/", {
     method: "GET",
   })
@@ -39,13 +38,28 @@ showP.addEventListener("click", () => {
       return res.json();
     })
     .then((data) => {
-      displayBlob.append(data[0].name);
-      console.log(data[0].path);
-      let audio = new Audio(`../backend/sounds/${data[0].name}`);
-      audio
-        .play()
-        .then(console.log(audio))
-        .catch((err) => console.log(err));
+      let soundReducedHexaName = data.map(
+        (x) => x.soundHexaRef.split``.slice(0, 8).join``
+      );
+      console.log(soundReducedHexaName);
+      soundReducedHexaName.map((p, i) => {
+        let button = document.createElement("button");
+        button.setAttribute("id", `teacher-sound${i}`);
+        displaySound.insertAdjacentElement("afterbegin", button).append(p);
+      });
+
+      function selectAndPlaySound(i) {
+        document
+          .getElementById(`teacher-sound${i}`)
+          .addEventListener("click", () => {
+            let audio = new Audio(`../backend/sounds/${data[i].soundHexaRef}`);
+            audio
+              .play()
+              .then(console.log(audio))
+              .catch((err) => console.log(err));
+          });
+      }
+      selectAndPlaySound(2);
     })
     .catch((err) => console.log(err));
 });
