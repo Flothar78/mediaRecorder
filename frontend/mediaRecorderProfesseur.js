@@ -1,7 +1,6 @@
 const recordP = document.getElementById("recordP");
 const stopRecP = document.getElementById("stopRecP");
 const displaySound = document.getElementById("databaseDisplay");
-const playP = document.getElementById("playP");
 let audioChunksProf = [];
 
 navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
@@ -26,8 +25,12 @@ sendP.addEventListener("click", () => {
     method: "POST",
     body: fd,
   })
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      return err;
+    });
 });
 
 addEventListener("load", () => {
@@ -41,15 +44,12 @@ addEventListener("load", () => {
       let soundReducedHexaName = data.map(
         (x) => x.soundHexaRef.split``.slice(0, 8).join``
       );
-      console.log(`soundReducedHexaName: `, soundReducedHexaName);
-
       soundReducedHexaName.map((p, i) => {
         let button = document.createElement("button");
         button.setAttribute("id", `${i}`);
         button.classList.add("button-short-hexa-sound");
         displaySound.insertAdjacentElement("afterbegin", button).append(p);
       });
-
       function selectAndPlaySound(i) {
         let audio = new Audio(`../backend/sounds/${data[i].soundHexaRef}`);
         audio

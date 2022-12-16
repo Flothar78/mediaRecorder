@@ -3,7 +3,7 @@ const router = express.Router();
 const Model = require("../models/model");
 const multer = require("multer");
 const upload = multer({ dest: "sounds" });
-const fs = require("fs");
+//const fs = require("fs");
 const path = require("path");
 
 router.get("/", async (req, res) => {
