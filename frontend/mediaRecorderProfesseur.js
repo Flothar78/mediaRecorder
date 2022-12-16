@@ -41,11 +41,12 @@ addEventListener("load", () => {
       let soundReducedHexaName = data.map(
         (x) => x.soundHexaRef.split``.slice(0, 8).join``
       );
-      console.log(soundReducedHexaName);
+      console.log(`soundReducedHexaName: `, soundReducedHexaName);
 
       soundReducedHexaName.map((p, i) => {
         let button = document.createElement("button");
         button.setAttribute("id", `${i}`);
+        button.classList.add("button-short-hexa-sound");
         displaySound.insertAdjacentElement("afterbegin", button).append(p);
       });
 
@@ -56,9 +57,14 @@ addEventListener("load", () => {
           .then()
           .catch((err) => console.log(err));
       }
-      document.addEventListener("click", (e) => {
-        return selectAndPlaySound(e.target.id);
-      });
+      let shortHexaButtons = document.getElementsByClassName(
+        "button-short-hexa-sound"
+      );
+      for (const shortHexaButton of shortHexaButtons) {
+        shortHexaButton.addEventListener("click", (e) => {
+          return selectAndPlaySound(e.target.id);
+        });
+      }
     })
     .catch((err) => console.log(err));
 });
