@@ -1,7 +1,7 @@
 const dotenv = require("dotenv");
 dotenv.config({ path: "../.env" });
 const express = require("express");
-//const multer = require("multer");
+
 const app = express();
 const cors = require("cors");
 const path = require("path");
@@ -13,11 +13,6 @@ app.use(cors());
 app.use(express.json());
 app.use("./sounds", express.static(path.join(__dirname, "sounds")));
 app.use("/api", routes);
-
-//app.use(express.static("media")); // for serving the HTML file
-//
-//let upload = multer({ dest: __dirname + "/public/uploads/" });
-//let type = upload.single("upl");
 
 mongoose
   .connect(
