@@ -3,7 +3,7 @@ const router = express.Router();
 const Model = require("../models/model");
 const multer = require("multer");
 const upload = multer({ dest: "sounds" });
-//const fs = require("fs");
+
 const path = require("path");
 
 router.get("/", async (req, res) => {
@@ -28,11 +28,6 @@ router.post("/post", upload.single("teacherVoice"), async (req, res) => {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-  // console.log(req.file);
 });
-
-// router.get("/getOne/:id", (req, res) => {
-//   res.send(req.params.id);
-// });
 
 module.exports = router;
