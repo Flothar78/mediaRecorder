@@ -22,22 +22,21 @@ navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
     apprenant.removeChild(textWarningRecording);
     stopRecA.classList.remove("glowing-button");
     mediaRecorder.stop();
-    playA.classList.add("glowing-button");
   });
 });
 playA.addEventListener("click", () => {
   playA.classList.remove("glowing-button");
-  const newBlob = new Blob(audioChunksProf);
+  const audioUrl = URL.createObjectURL(new Blob(audioChunks));
+  audio = new Audio(audioUrl);
+  audio.play();
+});
+sendA.addEventListener("click", () => {
+  playA.classList.add("glowing-button");
+  const newBlob = new Blob(audioChunks);
   const fdLearner = new FormData();
   fdLearner.append("learnerVoice", newBlob);
   fetch("http://127.0.0.1:3078/api/learnerVoice", {
     method: "POST",
     body: fdLearner,
-  })
-    .then((res) => {
-      return res;
-    })
-    .catch((err) => {
-      return err;
-    });
+  });
 });
