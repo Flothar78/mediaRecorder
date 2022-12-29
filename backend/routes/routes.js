@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Model = require("../models/model");
 const multer = require("multer");
-const upload = multer({ dest: "sounds" });
+const uploadTeacher = multer({ dest: "sounds_teachers" });
+const uploadLearner = multer({ dest: "sounds_learners" });
 const path = require("path");
 
 router.get("/", async (req, res) => {
@@ -11,22 +12,40 @@ router.get("/", async (req, res) => {
     .catch((err) => res.status(400).json({ err }));
 });
 
-router.post("/post", upload.single("teacherVoice"), async (req, res) => {
-  const data = new Model({
-    soundHexaRef: req.file.filename,
-    path: Buffer.from(
-      path.resolve(__dirname + "/../sounds/" + req.file.filename)
-    ),
-    size: req.file.size,
-  });
-  console.log(data);
-  console.log(req.file);
-  try {
-    const dataToSave = await data.save();
-    res.status(200).json(dataToSave);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
+router.post(
+  "/teacherVoice",
+  uploadTeacher.single("teacherVoice"),
+  async (req, res) => {
+    const data = new Model({
+      soundHexaRef: req.file.filename,
+      path: Buffer.from(
+        path.resolve(__dirname + "/../sounds_teachers/" + req.file.filename)
+      ),
+      size: req.file.size,
+    });
+    console.log(data);
+    console.log(req.file);
+    try {
+      const dataToSave = await data.save();
+      res.status(200).json(dataToSave);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
   }
-});
+);
+
+router.post(
+  "/learnerVoice",
+  uploadLearner.single("learnerVoice"),
+  async (req, res) => {
+    const data = new Model({
+      soundHexaRef: req.file.filename,
+      path: Buffer.from(
+        path.resolve(__dirname + "/../sounds_learners/" + req.file.filename)
+      ),
+      size: req.file.size,
+    });
+  }
+);
 
 module.exports = router;

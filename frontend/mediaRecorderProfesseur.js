@@ -21,7 +21,7 @@ sendP.addEventListener("click", () => {
   const newBlob = new Blob(audioChunksProf);
   const fd = new FormData();
   fd.append("teacherVoice", newBlob);
-  fetch("http://127.0.0.1:3078/api/post", {
+  fetch("http://127.0.0.1:3078/api/teacherVoice", {
     method: "POST",
     body: fd,
   })
@@ -51,7 +51,9 @@ addEventListener("load", () => {
         displaySound.insertAdjacentElement("afterbegin", button).append(p);
       });
       function selectAndPlaySound(i) {
-        let audio = new Audio(`../backend/sounds/${data[i].soundHexaRef}`);
+        let audio = new Audio(
+          `../backend/sounds_teachers/${data[i].soundHexaRef}`
+        );
         audio
           .play()
           .then()

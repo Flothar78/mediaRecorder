@@ -25,9 +25,19 @@ navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
     playA.classList.add("glowing-button");
   });
 });
-playA.addEventListener("click", (audio) => {
+playA.addEventListener("click", () => {
   playA.classList.remove("glowing-button");
-  const audioUrl = URL.createObjectURL(new Blob(audioChunks));
-  audio = new Audio(audioUrl);
-  audio.play();
+  const newBlob = new Blob(audioChunksProf);
+  const fdLearner = new FormData();
+  fdLearner.append("learnerVoice", newBlob);
+  fetch("http://127.0.0.1:3078/api/learnerVoice", {
+    method: "POST",
+    body: fdLearner,
+  })
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      return err;
+    });
 });
