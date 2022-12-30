@@ -17,7 +17,7 @@
 const { exec } = require("child_process");
 
 exec(
-  "/home/flothar78/.local/bin/whisper ./sounds_apprenants/testSon.wav --language French -o sounds_apprenants",
+  "/home/flothar78/.local/bin/whisper ./sounds_learners/318a61f280d8fa8d92da42dc338b7e20 --language French -o sounds_learners",
   (error, stdout, stderr) => {
     if (error) {
       console.log(`error: ${error.message}`);

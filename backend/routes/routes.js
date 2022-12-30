@@ -34,18 +34,14 @@ router.post(
   }
 );
 
-router.post(
-  "/learnerVoice",
-  uploadLearner.single("learnerVoice"),
-  async (req, res) => {
-    const data = new Model({
-      soundHexaRef: req.file.filename,
-      path: Buffer.from(
-        path.resolve(__dirname + "/../sounds_learners/" + req.file.filename)
-      ),
-      size: req.file.size,
-    });
-  }
-);
+router.post("/learnerVoice", uploadLearner.single("learnerVoice"), (req) => {
+  new Model({
+    soundHexaRef: req.file.filename,
+    path: Buffer.from(
+      path.resolve(__dirname + "/../sounds_learners/" + req.file.filename)
+    ),
+    size: req.file.size,
+  });
+});
 
 module.exports = router;
