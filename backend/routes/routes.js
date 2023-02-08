@@ -5,6 +5,7 @@ const multer = require("multer");
 const uploadTeacher = multer({ dest: "sounds_teachers" });
 const uploadLearner = multer({ dest: "sounds_learners" });
 const path = require("path");
+const { unlink } = require("fs");
 
 router.get("/", async (req, res) => {
   Model.find()
@@ -35,6 +36,7 @@ router.post(
 );
 
 router.post("/learnerVoice", uploadLearner.single("learnerVoice"), (req) => {
+
   new Model({
     soundHexaRef: req.file.filename,
     path: Buffer.from(

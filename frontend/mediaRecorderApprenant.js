@@ -1,6 +1,6 @@
 let recordA = document.getElementById("recordA");
 let stopRecA = document.getElementById("stopRecA");
-let play = document.getElementById("playA");
+let playA = document.getElementById("playA");
 let apprenant = document.getElementById("apprenant-text-area");
 let audioChunks = [];
 let textWarningRecording = document.createTextNode("Enregistrement en cours");
@@ -35,6 +35,7 @@ sendA.addEventListener("click", () => {
   const newBlob = new Blob(audioChunks);
   const fdLearner = new FormData();
   fdLearner.append("learnerVoice", newBlob);
+
   fetch("http://127.0.0.1:3078/api/learnerVoice", {
     method: "POST",
     body: fdLearner,
